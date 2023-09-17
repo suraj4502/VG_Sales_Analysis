@@ -17,15 +17,14 @@ st.set_page_config(page_title="VG Sales Dashboard.",page_icon="🎮",
 
 
 
-def get_data(loc):
-    df = pd.read_csv(loc)
-    df['Publisher'].fillna('Unknown',inplace=True)
-    sales = ['NA_Sales','EU_Sales', 'JP_Sales', 'Other_Sales', 'Global_Sales']
-    df[sales] = df[sales] * 1000000
-    return df
+
+    
 
 
-df = get_data('vgsales.csv')
+df = pd.read_csv('vgsales.csv')
+df['Publisher'].fillna('Unknown',inplace=True)
+sales = ['NA_Sales','EU_Sales', 'JP_Sales', 'Other_Sales', 'Global_Sales']
+df[sales] = df[sales] * 1000000
 
 
 st.sidebar.image('giphy.gif',width=150) #use_column_width=True,
