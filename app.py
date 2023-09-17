@@ -16,7 +16,7 @@ st.set_page_config(page_title="VG Sales Dashboard.",page_icon="🎮",
 
 
 
-@st.cache_data
+
 def get_data(loc):
     df = pd.read_csv(loc)
     df['Publisher'].fillna('Unknown',inplace=True)
