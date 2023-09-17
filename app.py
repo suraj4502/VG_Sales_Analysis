@@ -20,18 +20,20 @@ st.set_page_config(page_title="VG Sales Dashboard.",page_icon="🎮",
 def get_data(loc):
     df = pd.read_csv(loc)
     df['Publisher'].fillna('Unknown',inplace=True)
+    sales = ['NA_Sales','EU_Sales', 'JP_Sales', 'Other_Sales', 'Global_Sales']
+    df[sales] = df[sales] * 1000000
     return df
 
 
 df = get_data('vgsales.csv')
 
 
-st.sidebar.image('giphy.gif')
+st.sidebar.image('giphy.gif',width=150) #use_column_width=True,
 st.sidebar.title("Sales Dashboard 📊")
 st.sidebar.markdown("---")
 
 
-rd =st.sidebar.radio('Select Analysis',['Overview.',
+rd =st.sidebar.radio('Select Analysis🎮',['Overview.',
                                         'Year wise Analyis.',
                                         'Genre wise Analysis.',
                                         'Platform wise Analysis.',
@@ -45,15 +47,29 @@ rd =st.sidebar.radio('Select Analysis',['Overview.',
 if rd == 'Overview.':
     st.title('Video Games Sales Analysis...🎮')
 
-    image = Image.open('sales.png')
-    st.image(image)
 
     st.markdown("---")
+    ts = df['Global_Sales'].sum()/1000000
+    tg = df.shape[0]
+    tp = len(df['Publisher'].unique())
+    
+    col1, col2, col3 = st.columns(3) 
+    col1.metric(label="**Total Sales.**", value=str(ts)+ ' M',delta="+")
+    col2.metric(label="**Total Games Released.**", value=tg ,delta="+", )
+    col3.metric(label='**Total Pulishers.**',value=tp, delta="+")
+    st.markdown("---")
+    
+    
+    image = Image.open('sales.png')
+    st.image(image)
+    
+    
+    
     st.header('Data exploration.')
 
     st.markdown("""
-                
-                ---
+        
+    ---        
     #### *※ Columns in the data along with their description.*
 
     - `Rank:` The ranking position of the game in terms of global sales.
@@ -260,10 +276,7 @@ if rd == 'Platform wise Analysis.':
     st.plotly_chart(fig)
     
     
-    st.header("Top Games on Each Platform.")
-    # Top Games on Each Platform (Table)
-    top_games_by_platform = df.groupby('Platform').apply(lambda x: x.nlargest(1, 'Global_Sales')).reset_index(drop=True)
-    st.dataframe(top_games_by_platform)
+    
     
     
     
@@ -316,6 +329,11 @@ if rd == 'Platform wise Analysis.':
     
     st.plotly_chart(fig)
     
+    st.header("Top Games on Each Platform.")
+    # Top Games on Each Platform (Table)
+    top_games_by_platform = df.groupby('Platform').apply(lambda x: x.nlargest(1, 'Global_Sales')).reset_index(drop=True)
+    st.dataframe(top_games_by_platform)
+    
     
     
 if rd == 'Publisher wise Analysis.':
@@ -328,7 +346,7 @@ if rd == 'Publisher wise Analysis.':
     top_publishers_by_sales = df.groupby('Publisher')['Global_Sales'].sum().reset_index()
     top_publishers_by_sales = top_publishers_by_sales.sort_values(by='Global_Sales', ascending=False).head(10)
     fig = px.bar(top_publishers_by_sales, x='Publisher', y='Global_Sales',
-                 color_discrete_sequence=['#9772FB'])
+                 color_discrete_sequence=['#45FFCA'])
     
     fig.update_layout(
     xaxis_title='Publisher',
@@ -339,3 +357,74 @@ if rd == 'Publisher wise Analysis.':
     st.plotly_chart(fig)
     
     
+    st.header('publisher Market Share.')
+    # Publisher Market Share (Pie Chart)
+    publisher_market_share = df.groupby('Publisher')['Global_Sales'].sum().reset_index()
+    publisher_market_share = publisher_market_share.sort_values(by='Global_Sales', ascending=False).head(10)
+    fig = px.pie(publisher_market_share, values='Global_Sales', names='Publisher',
+                 color_discrete_sequence=px.colors.sequential.Jet_r)
+    fig.update_traces(textposition='inside', textinfo='percent+label')
+    fig.update_layout(
+    xaxis_title='Publisher',
+    yaxis_title='Sales',
+    width=800,
+    height=400,
+    margin=dict(l=10, r=10, t=10, b=10),
+    showlegend = False)    
+    st.plotly_chart(fig)
+    
+    
+    st.header('Publishers Top Games.')
+    # Publisher's Top Games (Table)
+    top_games_by_publisher = df.groupby('Publisher').apply(lambda x: x.nlargest(1, 'Global_Sales')).reset_index(drop=True)
+    st.dataframe(top_games_by_publisher)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+st.sidebar.markdown("---")
+st.sidebar.markdown("\n")
+st.sidebar.markdown("\n")
+st.sidebar.markdown("\n")
+st.sidebar.markdown("\n")
+st.sidebar.markdown("\n")
+st.sidebar.markdown("\n")
+st.sidebar.markdown("\n")
+st.sidebar.markdown("\n")
+st.sidebar.markdown("\n")
+st.sidebar.markdown("\n")
+st.sidebar.markdown("\n")
+st.sidebar.markdown("\n")
+st.sidebar.markdown("\n")
+st.sidebar.markdown("\n")
+st.sidebar.markdown("\n")
+st.sidebar.markdown("\n")
+st.sidebar.markdown("\n")
+st.sidebar.markdown("\n")
+st.sidebar.markdown("\n")
+st.sidebar.markdown("\n")
+st.sidebar.markdown("\n")
+
+
+
+
+
+
+
+#st.markdown("---")
+st.sidebar.markdown("- Developed by `SKY`.   ⇨[github ](https://github.com/suraj4502), [Linkedin](https://www.linkedin.com/in/suraj4502), [Ig](https://www.instagram.com/suraj452/).")
+#st.markdown("---")
