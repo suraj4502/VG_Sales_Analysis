@@ -27,7 +27,7 @@ sales = ['NA_Sales','EU_Sales', 'JP_Sales', 'Other_Sales', 'Global_Sales']
 df[sales] = df[sales] * 1000000
 
 
-st.sidebar.image('giphy.gif',width=150) #use_column_width=True,
+st.sidebar.image('bunny.gif',width=150) #use_column_width=True,
 st.sidebar.title("Sales Dashboard 📊")
 st.sidebar.markdown("---")
 
