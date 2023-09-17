@@ -53,9 +53,9 @@ if rd == 'Overview.':
     tp = len(df['Publisher'].unique())
     
     col1, col2, col3 = st.columns(3) 
-    col1.metric(label="**Total Sales.**", value=str(ts)+ ' M',delta="+")
-    col2.metric(label="**Total Games Released.**", value=tg ,delta="+", )
-    col3.metric(label='**Total Pulishers.**',value=tp, delta="+")
+    col1.metric(label="Total Sales.", value=str(ts)+ ' M',delta="+")
+    col2.metric(label="Total Games Released.", value=tg ,delta="+", )
+    col3.metric(label='Total Pulishers.',value=tp, delta="+")
     st.markdown("---")
     
     
@@ -111,6 +111,18 @@ if rd == 'Year wise Analyis.':
     fig = px.line(df.groupby('Year')['Global_Sales'].sum().reset_index(), x='Year', y='Global_Sales')
     fig.update_yaxes(title_text='Global Sales')
     fig.update_traces(line=dict(color='red'))
+    fig.update_layout(
+    xaxis_title='Year',
+    yaxis_title='Sales',
+    width=800,
+    height=400,
+    margin=dict(l=10, r=10, t=10, b=10),
+    xaxis=dict(showgrid=False),
+    yaxis=dict(showgrid=True, gridcolor='#18122B'),
+    legend_title_text='Genres',
+    hovermode='x',  # Show tooltips on hover
+    hoverlabel=dict(bgcolor='#3F2305', font_size=12),  # Tooltip style
+    )
     st.plotly_chart(fig)
     
     st.header('Sales by Region Over Time.')
