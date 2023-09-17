@@ -118,11 +118,11 @@ if rd == 'Year wise Analyis.':
     height=400,
     margin=dict(l=10, r=10, t=10, b=10),
     xaxis=dict(showgrid=False),
-    yaxis=dict(showgrid=True, gridcolor='#18122B'),
-    legend_title_text='Genres',
+    yaxis=dict(showgrid=True, gridcolor='#61677A'),
     hovermode='x',  # Show tooltips on hover
-    hoverlabel=dict(bgcolor='#3F2305', font_size=12),  # Tooltip style
+    hoverlabel=dict(bgcolor='#1A1A40', font_size=12),  # Tooltip style
     )
+    fig.update_layout(plot_bgcolor='#0E1117' ,)
     st.plotly_chart(fig)
     
     st.header('Sales by Region Over Time.')
@@ -150,6 +150,15 @@ if rd == 'Year wise Analyis.':
         name='Other',
         selector=dict(name='Other_Sales')
     )
+    fig.update_layout(
+    plot_bgcolor='#0E1117' ,
+    width=800,
+    height=400,
+    margin=dict(l=10, r=10, t=10, b=10),
+    xaxis=dict(showgrid=False),
+    yaxis=dict(showgrid=True, gridcolor='#61677A'),
+    hoverlabel=dict(bgcolor='#1A1A40', font_size=12),  # Tooltip style
+    )
     st.plotly_chart(fig)
     
     
@@ -160,6 +169,15 @@ if rd == 'Year wise Analyis.':
     
     fig.update_xaxes(title_text='Year', tickmode='linear', tick0=2010, dtick=1)
     fig.update_yaxes(title_text='Count')
+    fig.update_layout(
+    plot_bgcolor='#0E1117' ,
+    width=800,
+    height=400,
+    margin=dict(l=10, r=10, t=10, b=10),
+    xaxis=dict(showgrid=False),
+    yaxis=dict(showgrid=True, gridcolor='#61677A'),
+    hoverlabel=dict(bgcolor='#1A1A40', font_size=12),  # Tooltip style
+    )
    
     st.plotly_chart(fig)
     
@@ -169,6 +187,15 @@ if rd == 'Year wise Analyis.':
     fig = px.line(average_sales_over_time, x='Year', y='Global_Sales')
     fig.update_yaxes(title_text='Avg Global Sales')
     fig.update_traces(line=dict(color='red'))
+    fig.update_layout(
+    plot_bgcolor='#0E1117' ,
+    width=800,
+    height=400,
+    margin=dict(l=10, r=10, t=10, b=10),
+    xaxis=dict(showgrid=False),
+    yaxis=dict(showgrid=True, gridcolor='#61677A', linewidth=0.3),
+    hoverlabel=dict(bgcolor='#1A1A40', font_size=12),  # Tooltip style
+    )
     st.plotly_chart(fig)
     
     
@@ -200,6 +227,7 @@ if rd == 'Genre wise Analysis.':
     hovermode='x',  # Show tooltips on hover
     hoverlabel=dict(bgcolor='#3F2305', font_size=12),  # Tooltip style
     )
+    fig.update_layout(plot_bgcolor='#0E1117' ,)
     st.plotly_chart(fig)
     
     
@@ -219,6 +247,7 @@ if rd == 'Genre wise Analysis.':
     hovermode='x',  # Show tooltips on hover
     hoverlabel=dict(bgcolor='#3F2305', font_size=12),  # Tooltip style
     )
+    fig.update_layout(plot_bgcolor='#0E1117' ,)
     st.plotly_chart(fig)
     
     
@@ -234,6 +263,7 @@ if rd == 'Genre wise Analysis.':
     hovermode='x',  # Show tooltips on hover
     hoverlabel=dict(bgcolor='#311D3F', font_size=12),  # Tooltip style
     )
+    fig.update_layout(plot_bgcolor='#0E1117' ,)
     st.plotly_chart(fig)
     
     
@@ -266,7 +296,7 @@ if rd == 'Platform wise Analysis.':
     hovermode='x',  # Show tooltips on hover
     hoverlabel=dict(bgcolor='#3F2305', font_size=18),  # Tooltip style
     )
-    
+    fig.update_layout(plot_bgcolor='#0E1117' ,)
     st.plotly_chart(fig)
     
     
@@ -283,7 +313,7 @@ if rd == 'Platform wise Analysis.':
                 width=800,
     height=400,
                 )
-    
+    fig.update_layout(plot_bgcolor='#0E1117' ,)
     st.plotly_chart(fig)
     
     
@@ -300,6 +330,7 @@ if rd == 'Platform wise Analysis.':
     
     fig.update_layout(width=800,
     height=400,)
+    fig.update_layout(plot_bgcolor='#0E1117' ,)
     st.plotly_chart(fig)
     
     
@@ -317,7 +348,7 @@ if rd == 'Platform wise Analysis.':
     width=800,
     height=400,
     margin=dict(l=10, r=10, t=10, b=10),)
-    
+    fig.update_layout(plot_bgcolor='#0E1117' ,)
     fig.update_traces(
     name='North America',
     selector=dict(name='NA_Sales')
@@ -365,6 +396,7 @@ if rd == 'Publisher wise Analysis.':
     width=800,
     height=400,
     margin=dict(l=10, r=10, t=10, b=10),)
+    fig.update_layout(plot_bgcolor='#0E1117' ,)
     st.plotly_chart(fig)
     
     
@@ -381,7 +413,8 @@ if rd == 'Publisher wise Analysis.':
     width=800,
     height=400,
     margin=dict(l=10, r=10, t=10, b=10),
-    showlegend = False)    
+    showlegend = False) 
+    fig.update_layout(plot_bgcolor='#0E1117' ,)   
     st.plotly_chart(fig)
     
     
